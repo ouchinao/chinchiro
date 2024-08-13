@@ -2,7 +2,7 @@
 //  chinchiro
 //
 //  Created by 大内直 on 2024/08/13.
-//  Todo ルール追加+反映
+//  Todo ルール反映
 //
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -14,8 +14,36 @@ void main() {
       home:Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("Chinchiro"),
+          title: Text("ちんちろ"),
           backgroundColor: Colors.grey,
+        ),
+        drawer: Builder( // Builderを追加してcontextを取得
+          builder: (BuildContext context) {
+            return Drawer( // メニューバーを追加
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
+                    child: Text('メニュー'),
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('ルール'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RulesPage(), // ルールページに遷移
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
         ),
         body: DicePage(),
       ),
@@ -83,6 +111,27 @@ class _DicePageState extends State<DicePage> {
               onPressed: _changeDiceFace,
               child: Icon(Icons.casino, size: 150, color: Colors.red), // サイコロのアイコン
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ルールページ
+class RulesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ルール'),
+        backgroundColor: Colors.grey,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset("assets/rules.png"),
           ],
         ),
       ),
