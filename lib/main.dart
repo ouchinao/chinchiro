@@ -2,7 +2,7 @@
 //  chinchiro
 //
 //  Created by 大内直 on 2024/08/13.
-//  Todo サイコロが振れるように 
+//  Todo ルール追加+反映
 //
 import 'dart:math';
 import 'package:flutter/material.dart';
