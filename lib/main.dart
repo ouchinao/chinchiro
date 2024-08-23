@@ -6,6 +6,7 @@
 //
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'device_type.dart';
 
 //Scaffoldの中にStatefulWidgetを埋め込む
 void main() {
@@ -81,9 +82,13 @@ class _DicePageState extends State<DicePage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 5.0),
-              child: Image(
-                image: AssetImage("assets/dice$leftDiceNumber02.png"),
-              ),     
+              child: SizedBox(
+                width: getDialogWidth(context),
+                height: getDialogHeight(context) * 0.5,
+                child: Image(
+                  image: AssetImage("assets/dice$leftDiceNumber02.png"),
+                ),    
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,16 +96,24 @@ class _DicePageState extends State<DicePage> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage("assets/dice$leftDiceNumber01.png"),
+                    child: SizedBox(
+                      width: getDialogWidth(context),
+                      height: getDialogHeight(context) * 0.5,
+                      child: Image(
+                        image: AssetImage("assets/dice$leftDiceNumber01.png"),
+                      ),    
                     ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage("assets/dice$leftDiceNumber03.png"),
+                    child: SizedBox(
+                      width: getDialogWidth(context),
+                      height: getDialogHeight(context) * 0.5,
+                      child: Image(
+                        image: AssetImage("assets/dice$leftDiceNumber03.png"),
+                      ),    
                     ),
                   ),
                 ),
