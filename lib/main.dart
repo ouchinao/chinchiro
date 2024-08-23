@@ -2,7 +2,7 @@
 //  chinchiro
 //
 //  Created by 大内直 on 2024/08/13.
-//  Todo ルール反映
+//  2DVer完成 on 2024/08/24
 //
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -72,6 +72,34 @@ class _DicePageState extends State<DicePage> {
     });
   }
 
+  Widget _dialogScore(){
+    List<int> diceNumbers = [leftDiceNumber01, leftDiceNumber02, leftDiceNumber03];
+    if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03 && leftDiceNumber03 == 1) {
+      // ピンゾロ
+      return Text('ピンゾロ', style: TextStyle(fontSize: 36));
+    } else if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03) {
+      // ゾロ目
+      return Text('$leftDiceNumber01のゾロ目', style: TextStyle(fontSize: 36));
+    } else if (diceNumbers.toSet().containsAll({4,5,6})) {
+      // シゴロ
+      return Text('シゴロ', style: TextStyle(fontSize: 36));
+    } else if (diceNumbers.toSet().containsAll({1,2,3})) {
+      // ヒフミ
+      return Text('ヒフミ', style: TextStyle(fontSize: 36));
+    } else if (leftDiceNumber01 == leftDiceNumber02) {
+      // ふつうの目
+      return Text('$leftDiceNumber03のふつうの目', style: TextStyle(fontSize: 36));
+    } else if (leftDiceNumber02 == leftDiceNumber03) {
+      // ふつうの目
+      return Text('$leftDiceNumber01のふつうの目', style: TextStyle(fontSize: 36));
+    } else if (leftDiceNumber01 == leftDiceNumber03) {
+      // ふつうの目
+      return Text('$leftDiceNumber02のふつうの目', style: TextStyle(fontSize: 36));
+    } else {
+      return Text('役なし', style: TextStyle(fontSize:36));
+    }
+  }
+
   @override
   Widget build(BuildContext context){
     // サイコロ表示
@@ -103,6 +131,12 @@ class _DicePageState extends State<DicePage> {
                         image: AssetImage("assets/dice$leftDiceNumber01.png"),
                       ),    
                     ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    // スコア
+                    child: _dialogScore(),
                   ),
                 ),
                 Expanded(
