@@ -2,7 +2,7 @@
 //  chinchiro
 //
 //  Created by 大内直 on 2024/08/13.
-//  2DVer完成 on 2024/08/24
+//  
 //
 import 'dart:math';
 import 'package:flutter/material.dart';

@@ -6646,12 +6646,12 @@ if(s<430)return B.y7
 else if(s<1024)return B.y8
 else return B.y9},
 a9O(a){var s=A.bF(a,null,t.w).w.a.a
-switch(A.ag_(a).a){case 0:return s*0.3
+switch(A.ag_(a).a){case 0:return s*0.75
 case 1:return s*0.56
 case 2:return s*0.36}},
 a9N(a){var s=t.w,r=A.bF(a,null,s).w.a.a
 s=A.bF(a,null,s).w
-switch(A.ag_(a).a){case 0:return r*0.3
+switch(A.ag_(a).a){case 0:return r*0.85
 case 1:return r*0.68
 case 2:return s.a.b*0.64}},
 qo:function qo(a,b){this.a=a
