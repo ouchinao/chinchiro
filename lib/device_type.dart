@@ -28,7 +28,7 @@ double getDialogWidth(BuildContext context) {
     final deviceType = getDeviceType(context);
     switch (deviceType) {
       case DeviceType.mobile:
-        return screenWidth * 0.75;
+        return screenWidth * 0.56;
       case DeviceType.tablet:
         return screenWidth * 0.56;
       case DeviceType.desktop:
@@ -42,7 +42,7 @@ double getDialogHeight(BuildContext context) {
     final deviceType = getDeviceType(context);
     switch (deviceType) {
       case DeviceType.mobile:
-        return screenWidth * 0.85;
+        return screenWidth * 0.56;
       case DeviceType.tablet:
         return screenWidth * 0.68;
       case DeviceType.desktop:
