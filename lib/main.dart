@@ -15,7 +15,7 @@ void main() {
       home:Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("ちんちろ"),
+          title: const Text("ちんちろ"),
           backgroundColor: Colors.grey,
         ),
         drawer: Builder( // Builderを追加してcontextを取得
@@ -24,19 +24,19 @@ void main() {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
-                  DrawerHeader(
-                    child: Text('メニュー'),
+                  const DrawerHeader(
                     decoration: BoxDecoration(
                       color: Colors.grey,
                     ),
+                    child: Text('メニュー'),
                   ),
                   ListTile(
-                    title: Text('ルール'),
+                    title: const Text('ルール'),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RulesPage(), // ルールページに遷移
+                          builder: (context) => const RulesPage(), // ルールページに遷移
                         ),
                       );
                     },
@@ -46,7 +46,7 @@ void main() {
             );
           },
         ),
-        body: DicePage(),
+        body: const DicePage(),
       ),
     ),
   );
@@ -54,6 +54,8 @@ void main() {
 
 // 変数を更新した時にStatefulWidgetも更新
 class DicePage extends StatefulWidget{
+  const DicePage({super.key});
+
   @override
   _DicePageState createState() => _DicePageState();
 }
@@ -76,27 +78,27 @@ class _DicePageState extends State<DicePage> {
     List<int> diceNumbers = [leftDiceNumber01, leftDiceNumber02, leftDiceNumber03];
     if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03 && leftDiceNumber03 == 1) {
       // ピンゾロ
-      return Text('ピンゾロ', style: TextStyle(fontSize: 36));
+      return const Text('ピンゾロ', style: TextStyle(fontSize: 36));
     } else if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03) {
       // ゾロ目
-      return Text('$leftDiceNumber01のゾロ目', style: TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber01ゾロ', style: const TextStyle(fontSize: 36));
     } else if (diceNumbers.toSet().containsAll({4,5,6})) {
       // シゴロ
-      return Text('シゴロ', style: TextStyle(fontSize: 36));
+      return const Text('シゴロ', style: TextStyle(fontSize: 36));
     } else if (diceNumbers.toSet().containsAll({1,2,3})) {
       // ヒフミ
-      return Text('ヒフミ', style: TextStyle(fontSize: 36));
+      return const Text('ヒフミ', style: TextStyle(fontSize: 36));
     } else if (leftDiceNumber01 == leftDiceNumber02) {
       // ふつうの目
-      return Text('$leftDiceNumber03のふつうの目', style: TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber03', style: const TextStyle(fontSize: 36));
     } else if (leftDiceNumber02 == leftDiceNumber03) {
       // ふつうの目
-      return Text('$leftDiceNumber01のふつうの目', style: TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber01', style: const TextStyle(fontSize: 36));
     } else if (leftDiceNumber01 == leftDiceNumber03) {
       // ふつうの目
-      return Text('$leftDiceNumber02のふつうの目', style: TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber02', style: const TextStyle(fontSize: 36));
     } else {
-      return Text('役なし', style: TextStyle(fontSize:36));
+      return const Text('役なし', style: TextStyle(fontSize:36));
     }
   }
 
@@ -156,7 +158,7 @@ class _DicePageState extends State<DicePage> {
             // サイコロを振るボタン
             ElevatedButton(
               onPressed: _changeDiceFace,
-              child: Icon(Icons.casino, size: 150, color: Colors.red), // サイコロのアイコン
+              child: const Icon(Icons.casino, size: 150, color: Colors.red), // サイコロのアイコン
             ),
           ],
         ),
@@ -167,11 +169,13 @@ class _DicePageState extends State<DicePage> {
 
 // ルールページ
 class RulesPage extends StatelessWidget {
+  const RulesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ルール'),
+        title: const Text('ルール'),
         backgroundColor: Colors.grey,
       ),
       body: Center(
