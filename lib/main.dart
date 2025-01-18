@@ -7,6 +7,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'device_type.dart';
+// import 'package:zflutter/zflutter.dart';
 
 //Scaffoldの中にStatefulWidgetを埋め込む
 void main() {
