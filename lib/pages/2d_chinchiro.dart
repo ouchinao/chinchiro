@@ -2,7 +2,17 @@
 // 変数を更新した時にStatefulWidgetも更新
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'device_type.dart';
+import '../device_type.dart';
+
+const int firstleftDiceNumber01 = 1;
+const int firstleftDiceNumber02 = 6;
+const int firstleftDiceNumber03 = 3;
+const int randomDice = 6;
+const double scoreFontSize = 36;
+const double dicePadding = 5.0;
+const double diceHeightRate = 0.5;
+const double diceIconButtonSize = 150;
+
 
 class DicePage extends StatefulWidget{
   const DicePage({super.key});
@@ -11,17 +21,16 @@ class DicePage extends StatefulWidget{
   _DicePageState createState() => _DicePageState();
 }
 
-//ウィジェットの中のクラスをオーバーライド
 class _DicePageState extends State<DicePage> {
-  int leftDiceNumber01 = 1;
-  int leftDiceNumber02 = 6;
-  int leftDiceNumber03 = 3;
+  int leftDiceNumber01 = firstleftDiceNumber01;
+  int leftDiceNumber02 = firstleftDiceNumber02;
+  int leftDiceNumber03 = firstleftDiceNumber03;
 
   void _changeDiceFace(){
     setState((){
-      leftDiceNumber01 = Random().nextInt(6) + 1;
-      leftDiceNumber02 = Random().nextInt(6) + 1;
-      leftDiceNumber03 = Random().nextInt(6) + 1;
+      leftDiceNumber01 = Random().nextInt(randomDice) + 1;
+      leftDiceNumber02 = Random().nextInt(randomDice) + 1;
+      leftDiceNumber03 = Random().nextInt(randomDice) + 1;
     });
   }
 
@@ -29,27 +38,27 @@ class _DicePageState extends State<DicePage> {
     List<int> diceNumbers = [leftDiceNumber01, leftDiceNumber02, leftDiceNumber03];
     if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03 && leftDiceNumber03 == 1) {
       // ピンゾロ
-      return const Text('ピンゾロ', style: TextStyle(fontSize: 36));
+      return const Text('ピンゾロ', style: TextStyle(fontSize: scoreFontSize));
     } else if (leftDiceNumber01 == leftDiceNumber02 && leftDiceNumber02 == leftDiceNumber03) {
       // ゾロ目
-      return Text('$leftDiceNumber01ゾロ', style: const TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber01ゾロ', style: const TextStyle(fontSize: scoreFontSize));
     } else if (diceNumbers.toSet().containsAll({4,5,6})) {
       // シゴロ
-      return const Text('シゴロ', style: TextStyle(fontSize: 36));
+      return const Text('シゴロ', style: TextStyle(fontSize: scoreFontSize));
     } else if (diceNumbers.toSet().containsAll({1,2,3})) {
       // ヒフミ
-      return const Text('ヒフミ', style: TextStyle(fontSize: 36));
+      return const Text('ヒフミ', style: TextStyle(fontSize: scoreFontSize));
     } else if (leftDiceNumber01 == leftDiceNumber02) {
       // ふつうの目
-      return Text('$leftDiceNumber03', style: const TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber03', style: const TextStyle(fontSize: scoreFontSize));
     } else if (leftDiceNumber02 == leftDiceNumber03) {
       // ふつうの目
-      return Text('$leftDiceNumber01', style: const TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber01', style: const TextStyle(fontSize: scoreFontSize));
     } else if (leftDiceNumber01 == leftDiceNumber03) {
       // ふつうの目
-      return Text('$leftDiceNumber02', style: const TextStyle(fontSize: 36));
+      return Text('$leftDiceNumber02', style: const TextStyle(fontSize: scoreFontSize));
     } else {
-      return const Text('役なし', style: TextStyle(fontSize:36));
+      return const Text('役なし', style: TextStyle(fontSize:scoreFontSize));
     }
   }
 
@@ -62,10 +71,10 @@ class _DicePageState extends State<DicePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
+              padding: const EdgeInsets.only(bottom: dicePadding),
               child: SizedBox(
                 width: getDialogWidth(context),
-                height: getDialogHeight(context) * 0.5,
+                height: getDialogHeight(context) * diceHeightRate,
                 child: Image(
                   image: AssetImage("assets/dice$leftDiceNumber02.png"),
                 ),    
@@ -76,10 +85,10 @@ class _DicePageState extends State<DicePage> {
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(dicePadding),
                     child: SizedBox(
                       width: getDialogWidth(context),
-                      height: getDialogHeight(context) * 0.5,
+                      height: getDialogHeight(context) * diceHeightRate,
                       child: Image(
                         image: AssetImage("assets/dice$leftDiceNumber01.png"),
                       ),    
@@ -94,10 +103,10 @@ class _DicePageState extends State<DicePage> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(dicePadding),
                     child: SizedBox(
                       width: getDialogWidth(context),
-                      height: getDialogHeight(context) * 0.5,
+                      height: getDialogHeight(context) * diceHeightRate,
                       child: Image(
                         image: AssetImage("assets/dice$leftDiceNumber03.png"),
                       ),    
@@ -109,7 +118,7 @@ class _DicePageState extends State<DicePage> {
             // サイコロを振るボタン
             ElevatedButton(
               onPressed: _changeDiceFace,
-              child: const Icon(Icons.casino, size: 150, color: Colors.red), // サイコロのアイコン
+              child: const Icon(Icons.casino, size: diceIconButtonSize, color: Colors.red), // サイコロのアイコン
             ),
           ],
         ),

@@ -3,8 +3,15 @@
 import 'package:flutter/material.dart';
 import '2d_chinchiro.dart';
 
+const double buttonPaddingHorizontal = 96.0;
+const double buttonPaddingVertical = 48.0;
+const double buttonFontSize = 40.0;
+const double betweenButton = 30.0;
+const String twoDText = "2D";
+const String threeDText = "3D";
+
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +30,22 @@ class HomePage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 96, vertical: 48),
-                textStyle: const TextStyle(fontSize: 40),
+                padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
+                textStyle: const TextStyle(fontSize: buttonFontSize),
               ),
-              child: const Text('2D'),
+              child: const Text(twoDText),
             ),
-            const SizedBox(width: 30),
+            const SizedBox(width: betweenButton),
             ElevatedButton(
               onPressed: () {
+                // 実装まだ
                 Navigator.pushNamed(context, '/3d_chinchiro');
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 96, vertical: 48),
-                textStyle: const TextStyle(fontSize: 40),
+                padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
+                textStyle: const TextStyle(fontSize: buttonFontSize),
               ),
-              child: const Text('3D'),
+              child: const Text(threeDText),
             ),
           ],
         ),

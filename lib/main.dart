@@ -4,10 +4,9 @@
 //  Created by 大内直 on 2024/08/13.
 //  
 //
-import 'package:chinchiro/homepage.dart';
+import 'package:chinchiro/pages/homepage.dart';
 import 'package:flutter/material.dart';
-import 'rule.dart';
-import '2d_chinchiro.dart';
+import 'pages/rule.dart';
 // import 'package:zflutter/zflutter.dart';
 
 //Scaffoldの中にStatefulWidgetを埋め込む
