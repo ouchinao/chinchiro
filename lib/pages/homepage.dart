@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import '2d_chinchiro.dart';
 import '../device_type.dart';
 
-final deviceType = getDeviceType(context);
-
 const double buttonPaddingHorizontal = 96.0;
 const double buttonPaddingVertical = 48.0;
 const double buttonFontSize = 40.0;
@@ -18,47 +16,51 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceType = getDeviceType(context);
     return Scaffold(
       body: Center(
-        child: Row(
+        child: deviceType == DeviceType.mobile
+          ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: buildButtons(context),
+          )
+          :Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DicePage(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
-                textStyle: const TextStyle(fontSize: buttonFontSize),
-              ),
-              child: const Text(twoDText),
-            ),
-            const SizedBox(width: betweenButton),
-            ElevatedButton(
-              onPressed: () {
-                // 実装まだ
-                Navigator.pushNamed(context, '/3d_chinchiro');
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
-                textStyle: const TextStyle(fontSize: buttonFontSize),
-              ),
-              child: const Text(threeDText),
-            ),
-          ],
+          children: buildButtons(context),
         ),
       ),
     );
   }
 	// ボタンまとめて、レスポンシブ対応かける
-	List<Widget> buildButtons(){
+	List<Widget> buildButtons(BuildContext context){
 		return [
-			
-		]
+			ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DicePage(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
+          textStyle: const TextStyle(fontSize: buttonFontSize),
+        ),
+        child: const Text(twoDText),
+      ),
+      const SizedBox(width: betweenButton),
+      ElevatedButton(
+        onPressed: () {
+          // 実装まだ
+          Navigator.pushNamed(context, '/3d_chinchiro');
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
+          textStyle: const TextStyle(fontSize: buttonFontSize),
+        ),
+        child: const Text(threeDText),
+      ),
+		];
 	}
 }
