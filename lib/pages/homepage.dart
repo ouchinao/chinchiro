@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import '2d_chinchiro.dart';
+import '../device_type.dart';
+
+final deviceType = getDeviceType(context);
 
 const double buttonPaddingHorizontal = 96.0;
 const double buttonPaddingVertical = 48.0;
@@ -52,4 +55,10 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+	// ボタンまとめて、レスポンシブ対応かける
+	List<Widget> buildButtons(){
+		return [
+			
+		]
+	}
 }
