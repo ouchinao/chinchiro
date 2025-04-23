@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '2d_chinchiro.dart';
+import '3d_chinchiro.dart';
 import '../device_type.dart';
 
 const double buttonPaddingHorizontal = 96.0;
@@ -52,8 +53,12 @@ class HomePage extends StatelessWidget {
       const SizedBox(width: betweenButton),
       ElevatedButton(
         onPressed: () {
-          // 実装まだ
-          Navigator.pushNamed(context, '/3d_chinchiro');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Dices(),
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: buttonPaddingHorizontal, vertical: buttonPaddingVertical),
