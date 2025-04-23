@@ -40,6 +40,13 @@ class _DicesState extends State<Dices> with SingleTickerProviderStateMixin {
             // rotation = rotation + ZVector.all(0.1);
             setState(() {});
           });
+    // アニメーション完了時のリスナーを追加
+    animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        // アニメーションが終了したらダイアログを表示
+        _showDialog();
+      }
+    });
   }
 
   void random() {
@@ -53,28 +60,46 @@ class _DicesState extends State<Dices> with SingleTickerProviderStateMixin {
     List<int> diceNumbers = [num, num2, num3];
     if (num == num2 && num2 == num3 && num3 == 1) {
       // ピンゾロ
-      return Text('ピンゾロ', style: TextStyle(fontSize: scoreFontSize));
+      return Text('ピンゾロ', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (num == num2 && num2 == num3) {
       // ゾロ目
-      return Text('$numゾロ', style: TextStyle(fontSize: scoreFontSize));
+      return Text('$numゾロ', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (diceNumbers.toSet().containsAll({4,5,6})) {
       // シゴロ
-      return Text('シゴロ', style: TextStyle(fontSize: scoreFontSize));
+      return Text('シゴロ', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (diceNumbers.toSet().containsAll({1,2,3})) {
       // ヒフミ
-      return Text('ヒフミ', style: TextStyle(fontSize: scoreFontSize));
+      return Text('ヒフミ', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (num == num2) {
       // ふつうの目
-      return Text('$num3', style: TextStyle(fontSize: scoreFontSize));
+      return Text('$num3', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (num2 == num3) {
       // ふつうの目
-      return Text('$num', style: TextStyle(fontSize: scoreFontSize));
+      return Text('$num', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else if (num == num3) {
       // ふつうの目
-      return Text('$num2', style: TextStyle(fontSize: scoreFontSize));
+      return Text('$num2', style: TextStyle(fontSize: scoreFontSize), textAlign: TextAlign.center);
     } else {
-      return Text('役なし', style: TextStyle(fontSize:scoreFontSize));
+      return Text('役なし', style: TextStyle(fontSize:scoreFontSize), textAlign: TextAlign.center);
     }
+  }
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: _dialogScore(),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
