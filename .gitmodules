@@ -1,4 +1,3 @@
 [submodule "packages"]
     path = packages
     url = https://github.com/ouchinao/zflutter.git
-    branch = null_safety
