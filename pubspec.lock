@@ -211,7 +211,7 @@ packages:
   zflutter:
     dependency: "direct main"
     description:
-      path: "packages/zflutter"
+      path: "zpackages/zflutter"
       relative: true
     source: path
     version: "0.0.1+3"
